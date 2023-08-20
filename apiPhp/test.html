@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+<script>
+    fetch("http://localhost/Zaker/apiPhp/").then(response => response.json()).then(data =>{
+        console.log(data);
+    });
+</script>
+
+<script>
+    let data = {userName :"aboode",age:20};
+    console.log(data);
+    console.log(JSON.stringify(data));
+    fetch("http://localhost/apiPhp/xtestPostRecave.php",{
+        body:JSON.stringify(data),
+        method:'POST'
+    }).then(response => response.json()).then(testData =>{
+        console.log(testData);
+    });
+
+
+</script>
+</body>
+</html>
