@@ -125,13 +125,20 @@ function handleLogin(event) {
     formData.forEach((value, key) => {
         data[key] = value;
     });
+    
+    document.getElementById("loginSuccess").textContent = "";
 
     sendData("http://localhost/zaker/auth/handlingLogin.php", data)
     .then(response => {
         // قم بعرض رسائل الخطأ داخل النموذج
-         document.getElementById("loginSuccess").textContent = "";
-        if (response) {
-            document.getElementById("loginSuccess").textContent = response;
+        // console.log(response)
+        if (response.message) {
+            document.getElementById("loginSuccess").textContent = response.message;
+            if (response.link) {
+                 window.location.href = response.link 
+            }
+        }else if (response.link) {
+            window.location.href = response.link 
         }
     })
     .catch(error => {

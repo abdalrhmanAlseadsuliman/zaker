@@ -1,3 +1,19 @@
+<?php
+
+if(
+    isset($_COOKIE['typeUsers']) && !empty($_COOKIE['typeUsers']) && $_COOKIE['typeUsers'] == 'user' 
+    && isset($_COOKIE['Email']) && !empty($_COOKIE['Email'])
+    ){
+   
+    header("Location:userDashboard.php");
+
+  }elseif(isset ($_COOKIE['typeUsers']) && !empty($_COOKIE['typeUsers']) && $_COOKIE['typeUsers'] == 'admin' ){
+    header("Location:adminDashboard.php");
+
+  }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,7 +24,8 @@
         <meta name="author" content="" />
         <title>Login - SB Admin</title>
         <link href="css/styles.css" rel="stylesheet" />
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script> -->
+        <script src="./js/fontawesome.js" crossorigin="anonymous"></script>
     </head>
     <body class="bg-primary">
         <div id="layoutAuthentication">
@@ -30,17 +47,17 @@
                                                 <label for="inputPassword">Password</label>
                                             </div>
                                             <div class="form-check mb-3">
-                                                <input name="Remember" class="form-check-input" id="inputRememberPassword" type="checkbox" value="Remember" />
+                                                <input name="Remember" class="form-check-input" id="inputRememberPassword" type="checkbox" value="RememberPass" />
                                                 <label class="form-check-label" for="inputRememberPassword">Remember Password</label>
                                             </div>
 
-                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                            <div class="d-flex align-items-center justify-content-center mt-4 mb-0">
                                               <h3 id="loginSuccess" class="text-center"></h3>
                                             </div>
 
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <a class="small" href="password.php">Forgot Password?</a>
-                                                <a class="btn btn-primary" href="" onclick="handleLogin(event)">Login</a>
+                                                <a class="btn btn-primary"  onclick="handleLogin(event)">Login</a>
                                             </div>
                                         </form>
                                     </div>
@@ -68,7 +85,8 @@
                 </footer>
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script> -->
+        <script src="js/bootstrap5.js"></script>
         <script src="js/scripts.js"></script>
         <script src="js/filejs.js"></script>
     </body>
