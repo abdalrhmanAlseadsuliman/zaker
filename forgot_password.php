@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>  إعادة تعين كلمة المرور </title>
+    <title> إعادة تعين </title>
     <link href="css/styles.css" rel="stylesheet" />
     <script src="./js/fontawesome.js" crossorigin="anonymous"></script>
     <style>
@@ -24,7 +24,7 @@
             background-repeat: no-repeat;
         }
 
-        
+         
     </style>
 </head>
 
@@ -40,18 +40,28 @@
                                     <h3 class="text-center font-weight-light my-4"> إعادة تعين كلمة السر </h3>
                                 </div>
                                 <div class="card-body">
-                                    <div class="small mb-3 text-muted">أدخل عنوان بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة المرور الخاصة بك.</div>
-                                    <form id="MyForgotPassword">
+                                    <div class="small mb-3 text-muted">
+                                       قم بإدخال كلمة المرور الجديدة 
+                                    </div>
+                                    <form id="MyResetPassword">
                                         <div class="form-floating mb-3">
-                                            <input name="Email" class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
-                                            <label for="inputEmail"> البريد الإلكتروني </label>
+                                            <input name="Password" class="form-control" id="inputEmail" type="password" placeholder="ادخل محارف وارقام ورموز" />
+                                            <label for="inputEmail"> كلمة المرور الجديدة </label>
+                                            <span id="PasswordError" class="error">  </span>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input name="PasswordConfirm" class="form-control" id="inputEmail" type="password" placeholder="ادخل محارف وارقام ورموز" />
+                                            <label for="inputEmail"> يرجى إعادة إدخال كلمة المرور </label>
+                                            <span id="PasswordConfirmError" class="error"></span>
+
                                         </div>
                                         <div  class="d-flex align-items-center justify-content-center mt-0 mb-0" id="forgotResponseMessage" >
-                                            <h3 id="forgotResponse" class="text-center mt-0 mb-0"></h3>
+                                            <h3 id="resetResponse" class="text-center mt-0 mb-0"></h3>
+                                            <h3 id="countdown" class="text-center mt-0 mb-0 font-1"></h3>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                             <a class="small" href="login.php"> العودة الى تسجيل الدخول </a>
-                                            <a class="btn btn-primary" href="login.php" onclick="forgotPassword(event)"> إرسال رابط إعادة التعين </a>
+                                            <a class="btn btn-primary" href="login.php" onclick="resetPassword(event)">  إعادة التعين </a>
                                         </div>
                                     </form>
                                 </div>

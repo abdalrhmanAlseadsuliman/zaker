@@ -23,14 +23,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            height: 93vh;
         }
         .card {
             background-color: rgba(150, 150, 150, 0.5);
         }
         #messageResponse {
             color: #fafafa;
-            font-size: 20px;
+            font-size: 26px;
         }
     </style>
 </head>
@@ -44,12 +44,29 @@
                             <div id="messageResponse" class="text-center  ">
 
                             </div>
+                            <div id="countdown" class="text-center text-white mt-2">
+
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div id="layoutAuthentication_footer">
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                        <div>
+                            <a href="#">Privacy Policy</a>
+                            &middot;
+                            <a href="#">Terms &amp; Conditions</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
    
    <script>
         // استدعاء الدالة verifyEmail() عند حدوث حدث "تحميل الصفحة"

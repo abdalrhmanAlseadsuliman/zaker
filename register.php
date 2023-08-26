@@ -12,6 +12,20 @@
   <link href="css/myStyle.css" rel="stylesheet" />
   <!-- <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script> -->
   <script src="js/fontawesome.js"></script>
+  <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-image: url("./image/a-view-of-the-mosque-2560x1253.jpeg");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        </style>
 </head>
 
 <body class="bg-primary" dir="rtl">
@@ -439,7 +453,7 @@
                         <div class="form-floating mb-3 mb-md-0">
                           <input class="form-control" name="Password" id="inputPassword" type="password" placeholder="إنشاء كلمة مرور" required />
                           <label for="inputPassword">Password</label>
-                            <span id="PasswordError" class="error">  </span>
+                          <span id="PasswordError" class="error">  </span>
                         </div>
                       </div>
                       
@@ -448,7 +462,7 @@
                           <input class="form-control" name="PasswordConfirm" id="inputPasswordConfirm" type="password" placeholder="تأكيد كلمة المرور" required />
                           <label for="inputPasswordConfirm">تأكيد كلمة المرور</label>
                           
-                            <span id="PasswordConfirmError" class="error"></span>
+                          <span id="PasswordConfirmError" class="error"></span>
 
                         </div>
                       </div>
@@ -457,11 +471,11 @@
                     <div class="row mb-3">
                       
                       
-                      <div class="col-md-6">
-                        <div class="form-floating mb-3 mb-md-0">
+                      <div class="col-md-12">
+                        <div class="form-floating text-center mb-3 mb-md-0">
                          
                           
-                            <span id="Connection" class="error"></span>
+                            <span id="Connection" class="text-center error"></span>
 
                         </div>
                       </div>
@@ -469,7 +483,7 @@
                     <div class="mt-4 mb-0">
                       <div class="d-grid">
                         <button type="submit" class="btn btn-primary btn-block" onclick="handleRegistration(event)">
-                          Create Account
+                          إنشاء حساب
                         </button>
                       </div>
                     </div>
@@ -477,7 +491,7 @@
                 </div>
                 <div class="card-footer text-center py-3">
                   <div class="small">
-                    <a href="login.php">Have an account? Go to login</a>
+                    <a href="login.php"> لدي حساب؟إذهب لتسجيل الدخول</a>
                   </div>
                 </div>
               </div>

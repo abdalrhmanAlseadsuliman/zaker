@@ -10,8 +10,8 @@ function callFunction($data,  &$errors,$connection){
     }
 
     // التحقق من تطابق كلمتي المرور
-    if (!validate_password($data["Password"], $data["PasswordConfirm"])) {
-        $errors["PasswordConfirm"] = "كلمتا المرور غير متطابقتين!";
+    if (!validate_password($data["Password"], $data["PasswordConfirm"],$errors)) {
+        
         $isValid = false;
     }
 
@@ -35,7 +35,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data = json_decode($json, true);
     $postData = $data;
     // $postData = $_POST;
-    if (isValidData($postData,$errors)) {
+    $requiredFields = [
+        'FirstName' => 'الاسم الأول',
+        'LastName' => 'الاسم الأخير',
+        'Gender' => 'الجنس',
+        'Age' => 'العمر',
+        'Email' => 'البريد الإلكتروني',
+        'Nationality' => 'الجنسية',
+        'Password' => 'كلمة المرور',
+        'PasswordConfirm' => 'تأكيد كلمة المرور'
+    ];
+    if (isValidData($requiredFields,$postData,$errors)) {
         
         foreach ($postData as $key => $value) {
             $postData[$key] = sanitizeInput($value);
@@ -50,17 +60,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $postData["Age"] =  (int)$postData["Age"];
             // var_dump($postData);
 
-            if(insert_user($connection ,$postData, $hashedPassword ,$vCode)){
-                if (send_verification_email($postData["Email"],$vCode)) {
-                  
+            if (send_verification_email($postData["Email"],$vCode)) {
+                if(insert_user($connection ,$postData, $hashedPassword ,$vCode)){
                     $errors["Connection"] = "تم التسجيل بنجاح يرجى مراجعة بريدك الالكتروني";            
                 }else {
-                    $errors["Connection"] = "تم التسجيل بنجاح لكن لم نستطع تفعيل الحساب";            
+                    $errors["Connection"] = "تمo'h  التسجيل بنجاح لكن لم نستطع تفعيل الحساب";            
 
                 }
             }
             else {
-                $errors["Connection"] = "لم التسجيل بنجاح يرجى مراجعة بريدك الالكتروني";
+                $errors["Connection"] = "عنوان البريد الإلكتروني خاطئ يرجى التاكد منه وإعادة المحاولة";
             }
             
        }

@@ -48,8 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     setcookie('typeUsers', $user["Status"], time() + (86400 * 30), '/');
                     // setcookie('password', $password, time() + (86400 * 30), '/');
                     // setcookie('userId', $user['UserID'], time() + (86400 * 30), '/');
-                    // $_SESSION['Email'] = $email;
-                    // $_SESSION['password'] = $password;
+                    $_SESSION['Email'] = $email;
+                    $_SESSION['typeUsers'] = $user["Status"];
                     // $_SESSION['userId'] = $user['UserID'];
 
                 }

@@ -40,8 +40,12 @@ function isPasswordStrong($password, &$errors)
 
 
 
-function validate_password($password, $confirmPassword){
-    return $password === $confirmPassword;
+function validate_password($password, $confirmPassword,&$errors){
+    if ($password !== $confirmPassword) {
+        $errors["PasswordConfirm"] = "كلمتا المرور غير متطابقتين!";
+        return false;
+    }
+    return true;
 }
 
 function validate_email($email){
@@ -63,21 +67,23 @@ function send_verification_email($email,$vCode){
     // استخدم الدالة المناسبة لإرسال البريد الإلكتروني، مثل PHPMailer أو mail()
     // يمكنك استخدام دالة mailFunction الموجودة في ملف mailFunction.php
     $subject = " رسالة تحقق من الايميل "; 
-    $message = " اهلا وسهلا بكم في موقع ذاكر  .<br>انقر فوق الرابط أدناه للتحقق من عنوان البريد الإلكتروني <a href='http://localhost/zaker/auth/verifyFront.php?email=$email&vCode=$vCode'> تحقق </a>";
+    $message = " اهلا وسهلا بكم في موقع ذاكر  .<br>انقر على الرابط أدناه للتحقق من عنوان البريد الإلكتروني <a href='http://localhost/zaker/auth/verifyFront.php?email=$email&vCode=$vCode'> تحقق </a>";
     return sendmail($email, $subject, $message);
 }
+
+
+function send_forgotPassword_email($email,$vCode){
+    // استخدم الدالة المناسبة لإرسال البريد الإلكتروني، مثل PHPMailer أو mail()
+    // يمكنك استخدام دالة mailFunction الموجودة في ملف mailFunction.php
+    $subject = " إعادة تعين كلمة المرور "; 
+    $message = " اهلا وسهلا بكم في موقع ذاكر  .<br> انقر على الرابط أدناه لإعادة تعين كلمة المرور <a href='http://localhost/zaker/forgot_password.php?email=$email&vCode=$vCode'> إعادة تعين </a>";
+    return sendmail($email, $subject, $message);
+}
+
+
 // var_dump($_SESSION);
-function isValidData($data, &$errors) {
-    $requiredFields = [
-        'FirstName' => 'الاسم الأول',
-        'LastName' => 'الاسم الأخير',
-        'Gender' => 'الجنس',
-        'Age' => 'العمر',
-        'Email' => 'البريد الإلكتروني',
-        'Nationality' => 'الجنسية',
-        'Password' => 'كلمة المرور',
-        'PasswordConfirm' => 'تأكيد كلمة المرور'
-    ];
+function isValidData($fieldsName,$data, &$errors) {
+    $requiredFields = $fieldsName;
 
     $isValid = true;
     foreach ($requiredFields as $field => $fieldName) {

@@ -28,16 +28,16 @@ function sendmail($email, $subject , $message){
 
         $mail->Subject = $subject;
         $mail->Body    = $message;
-        $mail->send();
+        if ($mail->send()){
             return true;
-    } catch (Exception $e) {
+        }else
             return false;
-    }
+        // echo 'Message has been sent';
+} catch (Exception $e) {
+    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+}
 }
 
 
-
-
-// var_dump(sendmail("abdulrhmanalsead@gmail.com","test","شكر خاص من مؤسسة مارررررررر المتميزة"));
 
 ?>

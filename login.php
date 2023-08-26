@@ -7,7 +7,8 @@ if(
    
     header("Location:userDashboard.php");
 
-  }elseif(isset ($_COOKIE['typeUsers']) && !empty($_COOKIE['typeUsers']) && $_COOKIE['typeUsers'] == 'admin' ){
+  }elseif(isset ($_COOKIE['typeUsers']) && !empty($_COOKIE['typeUsers']) && $_COOKIE['typeUsers'] == 'admin' && isset($_COOKIE['Email']) && !empty($_COOKIE['Email']) ){
+    
     header("Location:adminDashboard.php");
 
   }
@@ -26,29 +27,49 @@ if(
         <link href="css/styles.css" rel="stylesheet" />
         <!-- <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script> -->
         <script src="./js/fontawesome.js" crossorigin="anonymous"></script>
+
+        <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-image: url("./image/verifyBackground.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .form-check .form-check-input{
+            float: none;
+            margin: 0;
+        }
+        </style>
     </head>
-    <body class="bg-primary">
+    <body class="bg-primary" dir="rtl">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-5">
-                                <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+                    <div class="container ">
+                        <div class="row justify-content-center ">
+                            <div class="col-lg-5 ">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5 bg-white bg-opacity-25">
+                                    <div class="card-header">
+                                        <h3 class="text-center font-weight-light my-4">تسجيل الدخول</h3>
+                                    </div>
                                     <div class="card-body">
                                         <form id="MyLogin">
                                             <div class="form-floating mb-3">
                                                 <input name="Email" class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
-                                                <label for="inputEmail">Email address</label>
+                                                <label for="inputEmail">البريد الالكتروني</label>
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <input name="Password" class="form-control" id="inputPassword" type="password" placeholder="Password" />
-                                                <label for="inputPassword">Password</label>
+                                                <label for="inputPassword">كلمة المرور</label>
                                             </div>
                                             <div class="form-check mb-3">
                                                 <input name="Remember" class="form-check-input" id="inputRememberPassword" type="checkbox" value="RememberPass" />
-                                                <label class="form-check-label" for="inputRememberPassword">Remember Password</label>
+                                                <label class="form-check-label" for="inputRememberPassword">تذكر كلمة السر</label>
                                             </div>
 
                                             <div class="d-flex align-items-center justify-content-center mt-4 mb-0">
@@ -56,13 +77,13 @@ if(
                                             </div>
 
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="password.php">Forgot Password?</a>
-                                                <a class="btn btn-primary"  onclick="handleLogin(event)">Login</a>
+                                                <a class="small" href="password.php"> نسيت كلمة السر؟ </a>
+                                                <a class="btn btn-primary"  onclick="handleLogin(event)"> دخول </a>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="register.php">Need an account? Sign up!</a></div>
+                                        <div class="small"><a href="register.php">ليس لديك حساب؟ إنشاء حساب!</a></div>
                                     </div>
                                 </div>
                             </div>
