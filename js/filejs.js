@@ -495,3 +495,46 @@ function deleteArticle(articleId) {
   });
 }
 
+
+
+async function addPrayers(event) {
+  event.preventDefault();
+
+
+ try {
+    let x = await getUsersDataNumber(); // انتظار حل الوعد
+   // الحصول على التاريخ الحالي بالتقويم الهجري
+    var currentDate = new Date();
+    var year = currentDate.getFullYear();
+    var month = currentDate.getMonth() + 1;
+    var day = currentDate.getDate();
+    var formattedDate = day+ "-" + month + "-" + year ;
+    var apiUrl = "http://api.aladhan.com/v1/gToH/" + formattedDate;
+    
+    const response1 = await fetch(apiUrl);
+    const data = await response1.json();
+    var hijriDate = data.data.hijri.date;
+
+    const formData = new FormData(document.getElementById("MyParyersNumber"));
+    formData.append("userId", x['UserId']);
+    formData.append("hijriDate", hijriDate);
+
+    
+
+     const response = await axios.post("http://localhost/zaker/prayersHandling/prayersCountHandling.php", formData);
+     document.getElementById("prayerCountError").textContent = "";
+    
+     if (response.data.prayerCount) {
+       document.getElementById("prayerCountError").textContent = response.data.prayerCount;
+     }
+    
+     if (response.data.insertArticle) {
+       alert(response.data.insertArticle);
+     }
+     
+ 
+ } catch (error) {
+   // التعامل مع الأخطاء في الطلب
+   console.error("حدث خطأ أثناء إرسال الطلب:", error);
+ }
+}
