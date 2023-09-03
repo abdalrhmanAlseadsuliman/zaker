@@ -30,8 +30,8 @@ if (isset($_POST['email']) && isset($_POST['vCode'])) {
             $row = $result->fetch_assoc();
             // echo $row['Email']. "<br>" . $row['VerificationId'] . "<br>";
             $fetch_Email = $row['Email'];
-            $password = $row['Password'];
-            $userId = $row['UserId'];
+            $status = $row['Status'];
+            // $userId = $row['UserId'];
             $oldvCode = $row['VerificationId'];
             // $vStatus = (int)$row['VerificationStatus'];
             // if ($oldvCode != $vCode)
@@ -41,14 +41,14 @@ if (isset($_POST['email']) && isset($_POST['vCode'])) {
 
                 if ($connection->query($update) === TRUE) {
                     
-                    setcookie('email', $fetch_Email, time() + (86400 * 30), '/');
-                    setcookie('password', $password, time() + (86400 * 30), '/');
-                    setcookie('userId', $user['UserId'], time() + (86400 * 30), '/');
-                    $_SESSION['email'] = $fetch_Email;
-                    $_SESSION['password'] = $password;
-                    $_SESSION['userId'] = $user['UserId'];
+                    setcookie('Email', $fetch_Email, time() + (86400 * 30), '/');
+                    setcookie('typeUsers',$status, time() + (86400 * 30), '/');
+                    // setcookie('userId', $user['UserId'], time() + (86400 * 30), '/');
+                    $_SESSION['Email'] = $fetch_Email;
+                    $_SESSION['typeUsers'] = $status;
+                    // $_SESSION['userId'] = $user['UserId'];
 
-                    $response["success"] = "تم التحقق بنجاح";
+                    $response["success"] = "تم التحقق بنجاح يمكن إدخال الصوات الان";
                    
                 } 
                 else {

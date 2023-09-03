@@ -15,9 +15,9 @@ if (
         $user = mysqli_fetch_assoc($result);
         echo json_encode($user);
     }else{
-        echo json_encode(['userEmail' => null]);
+        echo json_encode(['userError' => null]);
     }
 } else {
-    echo json_encode(['userEmail' => "لا يوجد جلسة"]);
+    echo json_encode(['userError' => "يرجى تسجيل الدخول"]);
 }
 ?>

@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $postData['Email'];
         $password = $postData['Password'];
         // echo $email . " " . $password;
-        $sql = "SELECT * FROM users WHERE Email =  '$email'";
+        $sql = "SELECT * FROM users WHERE Email =  '$email' AND VerificationStatus = 1";
 
         // echo $email . " " . $password;
         $result = mysqli_query($connection, $sql);
@@ -56,18 +56,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($user["Status"] == "admin" ) {
                     $response["message"] = "تم تسجيل الدخول بنجاح";
                     $response["link"] = "adminDashboard.php";
-                   
+                    $_SESSION['Email'] = $email;
+                    $_SESSION['typeUsers'] = $user["Status"];
                 }
                 elseif($user["Status"] == "user"){
                     $response["message"] = "تم تسجيل الدخول بنجاح";
                     $response["link"] = "userDashboard.php";
-                   
+                    $_SESSION['Email'] = $email;
+                    $_SESSION['typeUsers'] = $user["Status"];
                 }
             } else {
                 $response["message"] = "كلمة المرور غير صحيحة";
             }
         } else {
-            $response["message"] = "  الايميل غير موجود يرجى تاكد من الايميل او إنشاء حساب جديد";
+            $response["message"] = "  الايميل غير موجود يرجى تأكد من الايميل او ان الحساب مفعل او إنشاء حساب جديد";
         }
     } else {
         $response["message"] = " يرجى عدم ترك الحقول فارغة ";

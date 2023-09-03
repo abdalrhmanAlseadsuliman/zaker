@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $sql = "UPDATE users SET Password = '$hashedPassword', VerificationId = '$newv_cod' WHERE Email = '$user[Email]' AND VerificationId = '$user[VerificationId]'";
                     if (mysqli_query($connection, $sql)) {
                         $response['message'] = " لقد تم تعديل كلمة السر بنجاح ";
-                        $response['link'] = "login.php";
+                        $response['link'] = "signIn.php";
                     }
                 } else {
                     $response['message'] = " انتهت المدة المخصصة لإعادة تعين كلمة المرور حاول مرة اخرى ";

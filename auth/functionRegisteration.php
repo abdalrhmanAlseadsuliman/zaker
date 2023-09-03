@@ -67,7 +67,7 @@ function send_verification_email($email,$vCode){
     // استخدم الدالة المناسبة لإرسال البريد الإلكتروني، مثل PHPMailer أو mail()
     // يمكنك استخدام دالة mailFunction الموجودة في ملف mailFunction.php
     $subject = " رسالة تحقق من الايميل "; 
-    $message = " اهلا وسهلا بكم في موقع ذاكر  .<br>انقر على الرابط أدناه للتحقق من عنوان البريد الإلكتروني <a href='http://localhost/zaker/auth/verifyFront.php?email=$email&vCode=$vCode'> تحقق </a>";
+    $message = " اهلا وسهلا بكم في موقع ذاكر  .<br>انقر على الرابط أدناه للتحقق من عنوان البريد الإلكتروني <a href='http://localhost/zaker/public/verifyFront.php?email=$email&vCode=$vCode'> تحقق </a>";
     return sendmail($email, $subject, $message);
 }
 
@@ -76,7 +76,7 @@ function send_forgotPassword_email($email,$vCode){
     // استخدم الدالة المناسبة لإرسال البريد الإلكتروني، مثل PHPMailer أو mail()
     // يمكنك استخدام دالة mailFunction الموجودة في ملف mailFunction.php
     $subject = " إعادة تعين كلمة المرور "; 
-    $message = " اهلا وسهلا بكم في موقع ذاكر  .<br> انقر على الرابط أدناه لإعادة تعين كلمة المرور <a href='http://localhost/zaker/forgot_password.php?email=$email&vCode=$vCode'> إعادة تعين </a>";
+    $message = " اهلا وسهلا بكم في موقع ذاكر  .<br> انقر على الرابط أدناه لإعادة تعين كلمة المرور <a href='http://localhost/zaker/public/resetPassword.php?email=$email&vCode=$vCode'> إعادة تعين </a>";
     return sendmail($email, $subject, $message);
 }
 

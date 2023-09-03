@@ -1,6 +1,15 @@
 <?php
 session_start();
+function isSession(){
+    if (
+        isset($_SESSION['Email']) && isset($_SESSION['typeUsers']) && 
+        !empty($_SESSION['Email']) && !empty($_SESSION['typeUsers'])
+        ) {
+            return true;
+        }
+        return false;
 
+}
 function setCookiesToSession() {
     if (
         isset($_COOKIE['Email']) && isset($_COOKIE['typeUsers']) && 

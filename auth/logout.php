@@ -26,6 +26,6 @@ if (isset($_SERVER['HTTP_COOKIE'])) {
 session_destroy();
 
 // إعادة توجيه المستخدم إلى صفحة تسجيل الدخول
-header("Location:../login.php");
+header("Location:../public/signIn.php");
 exit();
 ?>

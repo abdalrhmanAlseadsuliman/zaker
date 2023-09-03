@@ -9,3 +9,7 @@ CREATE TABLE articles (
     UserIdArticale INT, -- حقل مفتاح أجنبي لربط المستخدم الناشر
     FOREIGN KEY (UserIdArticale) REFERENCES users(UserId)
 );
+
+
+DELETE FROM SchedulePrayers;
+ALTER TABLE SchedulePrayers AUTO_INCREMENT = 1;

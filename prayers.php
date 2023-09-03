@@ -105,7 +105,7 @@ if (isset($_COOKIE['typeUsers']) && !empty($_COOKIE['typeUsers']) && $_COOKIE['t
                                 </div>
                             </nav>
                         </div> -->
-                        <a class="nav-link" href="charts.php">
+                        <a class="nav-link" href="prayers.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                             صلواتك على الرسول
                         </a>
