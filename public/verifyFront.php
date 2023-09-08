@@ -10,22 +10,11 @@
   <meta name="keywords" content="" />
   <meta name="author" content="5adem" />
   <link href="./css/tailwind.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/odometer.css" />
   <!--Replace with your tailwind.css once created-->
-
-  <style>
-    .gradient {
-      background: linear-gradient(90deg, #093637 0%, #44a08d 100%);
-    }
-
-    @font-face {
-      font-family: Harmattan;
-      src: url(Harmattan-Regular.ttf);
-    }
-
-    * {
-      font-family: Harmattan;
-    }
-  </style>
+  <script src="../js/fontawesome.js"></script>
+  <link href="../css/myStyle.css" rel="stylesheet">
+ 
 </head>
 
 <body class="leading-normal tracking-normal text-white gradient" dir="rtl">
@@ -55,13 +44,24 @@
             <li class="mr-3">
               <a class="inline-block text-white hover:text-gray-300 text-black no-underline hover:underline py-2 px-4" href="../index.php#salat">عدد الصلوات</a>
             </li>
-            <li class="mr-3">
-              <a class="inline-block text-white hover:text-gray-300 text-black no-underline hover:underline py-2 px-4" href="signUp.php">التسجيل</a>
-            </li>
+           
+              <li id="register" class="mr-3" >
+                <a class="inline-block text-white hover:text-gray-300 text-black no-underline hover:underline py-2 px-4" href="./public/signUp.php">إنشاء حساب</a>
+              </li>
           </ul>
           <button id="navAction" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-            <a class="text-gray-800 hover:text-gray-600 text-black no-underline hover:underline py-2 px-4" href="signIn.php">تسجيل الدخول</a>
+            <a class="text-gray-800 hover:text-gray-600 text-black no-underline hover:underline py-2 px-4" href="./public/signIn.php">تسجيل الدخول</a>
           </button>
+        
+
+          <!-- <? // php elseif (isUserLoggedIn()) : ?> -->
+          <li class="mr-3" id="logout" style="display:none">
+                <a class="inline-block text-white hover:text-gray-300 text-black no-underline hover:underline py-2 px-4" href="../auth/logout.php"> تسجيل الخروج </a>
+          </li>
+          <!-- <button id="navAction" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+            <a class="text-gray-800 hover:text-gray-600 text-black no-underline hover:underline py-2 px-4" href="./userDashboard.php">لوحة التحكم</a>
+          </button> -->
+       
         </div>
       </div>
       <hr class="border-b border-gray-100 opacity-25 my-0 py-0" />
@@ -71,12 +71,22 @@
   <!--Hero-->
   <br />
   <div class="pt-24">
-    <div class="container px-7 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+  <div class="container px-7 mx-auto ">
+
+<h3 id="AllPrayers" class="my-4 text-black bg-clip-text text-transparent text-center bg-gradient-to-r from-emerald-900 to-emerald-300 text-4xl leading-tight odometer" style="color:#fff; margin: 0 auto; font-size:50px;display: block;" dir="ltr">
+</h3>
+
+<h3 id="textAllPrayers" class="my-4 text-black bg-clip-text text-transparent text-center bg-gradient-to-r from-emerald-900 to-emerald-300 text-4xl leading-tight" style="color:#fff; margin: 0 auto; font-size:30px; display: block;" >
+  صلاة على الحبيب الأعظم ﷺ
+</h3>
+</div>
+  <div class="container px-7 mx-auto flex flex-wrap flex-col md:flex-row items-center">
       <!--Left Col-->
       <div class="flex flex-col w-full md:w-3/5 justify-center items-center text-right">
         <p class="uppercase tracking-loose w-full">موقع ذاكر</p>
         <h1 class="my-4 text-5xl font-bold leading-tight">
           نحو مليارية الصلاة والسلام على أشرف الأنام ﷺ
+         
         </h1>
         <p class="leading-normal text-2xl mb-8">
           الحمد لله وصلى الله وسلَّم وبارك على حبيبه ومصطفاه بجميع الصلوات
@@ -133,44 +143,39 @@
     <div class="container mx-auto px-8">
       <div class="w-full flex flex-col md:flex-row py-6">
         <div class="flex-1 mb-6 text-black text-center sm:text-right">
-          <a class="text-emerald-600 no-underline hover:no-underline font-bold text-4xl" href="#">
+          <a class="no-underline hover:no-underline font-bold text-4xl" style="color:#317e71" href="index.php">
             ذاكر
           </a>
         </div>
 
-        <div class="flex">
-          <a href="https://www.facebook.com/rabe3almoheben" class="flex-1 md:w-20">
-            <svg fill="#429E8C" height="40px" width="40px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-143 145 512 512" xml:space="preserve" stroke="#429E8C">
-              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-              <g id="SVGRepo_iconCarrier">
-                <g>
-                  <path d="M113,145c-141.4,0-256,114.6-256,256s114.6,256,256,256s256-114.6,256-256S254.4,145,113,145z M272.8,560.7 c-20.8,20.8-44.9,37.1-71.8,48.4c-27.8,11.8-57.4,17.7-88,17.7c-30.5,0-60.1-6-88-17.7c-26.9-11.4-51.1-27.7-71.8-48.4 c-20.8-20.8-37.1-44.9-48.4-71.8C-107,461.1-113,431.5-113,401s6-60.1,17.7-88c11.4-26.9,27.7-51.1,48.4-71.8 c20.9-20.8,45-37.1,71.9-48.5C52.9,181,82.5,175,113,175s60.1,6,88,17.7c26.9,11.4,51.1,27.7,71.8,48.4 c20.8,20.8,37.1,44.9,48.4,71.8c11.8,27.8,17.7,57.4,17.7,88c0,30.5-6,60.1-17.7,88C309.8,515.8,293.5,540,272.8,560.7z"></path>
-                  <path d="M146.8,313.7c10.3,0,21.3,3.2,21.3,3.2l6.6-39.2c0,0-14-4.8-47.4-4.8c-20.5,0-32.4,7.8-41.1,19.3 c-8.2,10.9-8.5,28.4-8.5,39.7v25.7H51.2v38.3h26.5v133h49.6v-133h39.3l2.9-38.3h-42.2v-29.9C127.3,317.4,136.5,313.7,146.8,313.7z"></path>
-                </g>
-              </g>
-            </svg>
+        <div class="flex justify-flex-center">
+
+
+          <a href="https://www.facebook.com/rabe3almoheben" style="font-size: 34px; color:#317e71; margin: 0 10px;">
+            <i class="fab fa-facebook" ></i>
           </a>
-          <a href="https://www.youtube.com/@AounalKaddoumi" class="flex-1 md:w-12"><svg fill="#429E8C" height="40px" width="40px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-143 145 512 512" xml:space="preserve">
-              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-              <g id="SVGRepo_iconCarrier">
-                <g>
-                  <path d="M113,145c-141.4,0-256,114.6-256,256s114.6,256,256,256s256-114.6,256-256S254.4,145,113,145z M272.8,560.7 c-20.8,20.8-44.9,37.1-71.8,48.4c-27.8,11.8-57.4,17.7-88,17.7c-30.5,0-60.1-6-88-17.7c-26.9-11.4-51.1-27.7-71.8-48.4 c-20.8-20.8-37.1-44.9-48.4-71.8C-107,461.1-113,431.5-113,401s6-60.1,17.7-88c11.4-26.9,27.7-51.1,48.4-71.8 c20.9-20.8,45-37.1,71.9-48.5C52.9,181,82.5,175,113,175s60.1,6,88,17.7c26.9,11.4,51.1,27.7,71.8,48.4 c20.8,20.8,37.1,44.9,48.4,71.8c11.8,27.8,17.7,57.4,17.7,88c0,30.5-6,60.1-17.7,88C309.8,515.8,293.5,540,272.8,560.7z"></path>
-                  <path d="M196.9,311.2H29.1c0,0-44.1,0-44.1,44.1v91.5c0,0,0,44.1,44.1,44.1h167.8c0,0,44.1,0,44.1-44.1v-91.5 C241,355.3,241,311.2,196.9,311.2z M78.9,450.3v-98.5l83.8,49.3L78.9,450.3z"></path>
-                </g>
-              </g>
-            </svg>
+
+          <a href="https://www.youtube.com/@AounalKaddoumi" style="font-size: 34px; color:#317e71 ;margin: 0 10px;">
+            <i class="fab fa-youtube"></i>
           </a>
+
+          <a href="https://t.me/ZakerClick" class="flex-1 md:w-12 text-gray-600" style="font-size: 34px; color:#317e71;margin: 0 10px;">
+            <i class="fab fa-telegram-plane"></i>
+          </a>
+
+
         </div>
       </div>
-      <p class="text-center text-emerald-600">
+      <p class="text-center" style="color:#317e71">
         تطوير فريق خادم - قسم البرمجة
       </p>
       <br />
     </div>
   </footer>
 
+  <a href="https://t.me/ZakerClick" class="teleIcon">
+    <i class="fab fa-telegram" style="background: #fff; border-radius: 50%; font-size: 40px;"></i>
+  </a>
   <script>
     var scrollpos = window.scrollY;
     var header = document.getElementById("header");
@@ -263,8 +268,12 @@
         });
     </script>
     
-    <script src="../js/filejs.js"></script>
-    <script src="../js/axios.js"></script>
+    <script src="../js/odometer.js"></script>
+  <script src="../js/filejs.js"></script>
+  <script src="../js/axios.js"></script>
+  <script>
+    window.onload = getPrayersAll;
+  </script>
 
   </body>
 

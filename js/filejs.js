@@ -20,7 +20,6 @@ function verifyEmail() {
   const email = urlParams.get("email");
   const vCode = urlParams.get("vCode");
 
-  
   // بناء بيانات الطلب
   const formData = new FormData();
   formData.append("email", email);
@@ -28,9 +27,10 @@ function verifyEmail() {
   document.getElementById("messageResponse").textContent = "";
 
   if (!email || !vCode) {
-    document.getElementById("messageResponse").textContent = "انتهت صلاحية الرابط";
+    document.getElementById("messageResponse").textContent =
+      "انتهت صلاحية الرابط";
     // document.getElementById("MyParyersNumber").style.display = "none";
-    
+
     return;
   }
 
@@ -44,16 +44,17 @@ function verifyEmail() {
   })
     .then((response) => response.json())
     .then((data) => {
-     
       if (data.success) {
         document.getElementById("messageResponse").textContent = data.success;
         document.getElementById("MyParyersNumber").style.display = "flex";
+        document.getElementById("logout").style.display = "flex";
+        document.getElementById("navAction").style.display = "none";
+        document.getElementById("register").style.display = "none";
 
         // startCountdownAndRedirect(secondsLeft, elementId, redirectUrl);
       }
       if (data.error) {
         document.getElementById("messageResponse").textContent = data.error;
-        
       }
       // console.log(data); // يمكنك التعامل مع البيانات هنا
     })
@@ -226,7 +227,7 @@ function resetPassword(event) {
         if (response.link) {
           let secondsLeft = 5;
           let elementId = "countdown";
-          let redirectUrl =  response.link;
+          let redirectUrl = response.link;
           startCountdownAndRedirect(secondsLeft, elementId, redirectUrl);
         }
       }
@@ -244,14 +245,13 @@ function resetPassword(event) {
     });
 }
 
-
-// جلب معلومات المستخدم الذي نشر المقالة 
-function getUsersDataNumber(){
+// جلب معلومات المستخدم الذي نشر المقالة
+function getUsersDataNumber() {
   return fetch("http://localhost/zaker/auth/getUserNumber.php")
-    .then(response => response.json())
-    .then(data => {
-      if (data.userError){
-        alert(data.userError)
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.userError) {
+        alert(data.userError);
         return false;
       }
       return data; // إرجاع القيمة المستلمة
@@ -263,9 +263,13 @@ async function addArticle(event) {
 
   const featuredImage = document.getElementById("featuredImage").files[0];
 
-  if (featuredImage && !(['image/png', 'image/jpeg', 'image/jpg'].includes(featuredImage.type))) {
-    document.getElementById("imgErrors").textContent = "الملف غير مدعوم. يجب أن يكون نوع الملف صورة (png, jpg, jpeg).";
-    document.getElementById("featuredImage").value = ""
+  if (
+    featuredImage &&
+    !["image/png", "image/jpeg", "image/jpg"].includes(featuredImage.type)
+  ) {
+    document.getElementById("imgErrors").textContent =
+      "الملف غير مدعوم. يجب أن يكون نوع الملف صورة (png, jpg, jpeg).";
+    document.getElementById("featuredImage").value = "";
     return;
   }
 
@@ -273,65 +277,72 @@ async function addArticle(event) {
     let x = await getUsersDataNumber(); // انتظار حل الوعد
     const formData = new FormData(document.getElementById("MyAddArticle"));
     formData.delete("featuredImage");
-    formData.append("userId", x['UserId']);
+    formData.append("userId", x["UserId"]);
     formData.append("featuredImage", featuredImage);
 
-    const response = await axios.post("http://localhost/zaker/articles/handlingAddArticle.php", formData);
-      document.getElementById("titleErrors").textContent = "";
-      document.getElementById("contentErrors").textContent = "";
-      document.getElementById("excerptErrors").textContent = "";
-      document.getElementById("categoryErrors").textContent = "";
-      document.getElementById("publishDateErrors").textContent = "";
-      document.getElementById("keywordsErrors").textContent = "";
-      document.getElementById("imgErrors").textContent = "";
-      if (response.data.title) {
-        document.getElementById("titleErrors").textContent = response.data.title;
-      }
-      if (response.data.content) {
-        document.getElementById("contentErrors").textContent = response.data.content;
-      }
-      if (response.data.excerpt) {
-        document.getElementById("excerptErrors").textContent = response.data.excerpt;
-      }
-      if (response.data.category) {
-        document.getElementById("categoryErrors").textContent = response.data.category;
-      }
-      if (response.data.publishDate) {
-        document.getElementById("publishDateErrors").textContent = response.data.publishDate;
-      }
-      if (response.data.keywords) {
-        document.getElementById("keywordsErrors").textContent = response.data.keywords;
-      }
-      if (response.data.featuredImage) {
-        document.getElementById("imgErrors").textContent = response.data.featuredImage;
-      }
-      if (response.data.insertArticle) {
-        alert(response.data.insertArticle);
-      }
-      
-  
+    const response = await axios.post(
+      "http://localhost/zaker/articles/handlingAddArticle.php",
+      formData
+    );
+    document.getElementById("titleErrors").textContent = "";
+    document.getElementById("contentErrors").textContent = "";
+    document.getElementById("excerptErrors").textContent = "";
+    document.getElementById("categoryErrors").textContent = "";
+    document.getElementById("publishDateErrors").textContent = "";
+    document.getElementById("keywordsErrors").textContent = "";
+    document.getElementById("imgErrors").textContent = "";
+    if (response.data.title) {
+      document.getElementById("titleErrors").textContent = response.data.title;
+    }
+    if (response.data.content) {
+      document.getElementById("contentErrors").textContent =
+        response.data.content;
+    }
+    if (response.data.excerpt) {
+      document.getElementById("excerptErrors").textContent =
+        response.data.excerpt;
+    }
+    if (response.data.category) {
+      document.getElementById("categoryErrors").textContent =
+        response.data.category;
+    }
+    if (response.data.publishDate) {
+      document.getElementById("publishDateErrors").textContent =
+        response.data.publishDate;
+    }
+    if (response.data.keywords) {
+      document.getElementById("keywordsErrors").textContent =
+        response.data.keywords;
+    }
+    if (response.data.featuredImage) {
+      document.getElementById("imgErrors").textContent =
+        response.data.featuredImage;
+    }
+    if (response.data.insertArticle) {
+      alert(response.data.insertArticle);
+    }
   } catch (error) {
     // التعامل مع الأخطاء في الطلب
     console.error("حدث خطأ أثناء إرسال المقالة:", error);
   }
 }
 
-    
-
 function fetchArticles() {
-  const articlesGrid = document.getElementById('articlesGrid');
+  const articlesGrid = document.getElementById("articlesGrid");
 
-  fetch('http://localhost/zaker/articles/getPost.php')
-    .then(response => response.json())
-    .then(data => {
-      articlesGrid.innerHTML = ''; // تفريغ المحتوى السابق
+  fetch("http://localhost/zaker/articles/getPost.php")
+    .then((response) => response.json())
+    .then((data) => {
+      articlesGrid.innerHTML = ""; // تفريغ المحتوى السابق
 
-      data.forEach(article => {
-        const articleDiv = document.createElement('div');
-        articleDiv.classList.add('col-md-4', 'mb-4');
+      data.forEach((article) => {
+        const articleDiv = document.createElement("div");
+        articleDiv.classList.add("col-md-4", "mb-4");
         articleDiv.innerHTML = `
           <div  class="card">
-            <img src="upload/${article.FeaturedImage}" height="350px" class="card-img-top" alt="صورة المقالة">
+            <img src="upload/${
+              article.FeaturedImage
+            }" height="350px" class="card-img-top" alt="صورة المقالة">
             <div class="card-body">
               <h5 class="card-title">${article.Title}</h5>
               <p class="card-text">${article.Excerpt}</p>
@@ -340,48 +351,54 @@ function fetchArticles() {
               <p class="card-text">تصنيف: ${article.Category}</p>
             </div>
             <div class="btn-group" role="group" aria-label="أزرار الإجراءات">
-              <button type="button" class="btn btn-info"    onclick='viewArticle(${JSON.stringify(article)})'>عرض المقال</button>
-              <button type="button" class="btn btn-warning" onclick='editArticle(${JSON.stringify(article)})'>تعديل المقال</button>
-              <button type="button" class="btn btn-danger"  onclick='deleteArticle(${article.ArticleId})'>حذف المقال</button>
+              <button type="button" class="btn btn-info"    onclick='viewArticle(${JSON.stringify(
+                article
+              )})'>عرض المقال</button>
+              <button type="button" class="btn btn-warning" onclick='editArticle(${JSON.stringify(
+                article
+              )})'>تعديل المقال</button>
+              <button type="button" class="btn btn-danger"  onclick='deleteArticle(${
+                article.ArticleId
+              })'>حذف المقال</button>
           </div>
           </div>
         `;
         articlesGrid.appendChild(articleDiv);
       });
     })
-    .catch(error => {
-      console.error('حدث خطأ أثناء استدعاء المقالات:', error);
+    .catch((error) => {
+      console.error("حدث خطأ أثناء استدعاء المقالات:", error);
     });
 }
-
-
 
 function viewArticle(article) {
   // const articleJSON = JSON.stringify(article);
   // console.log(article.ArticleId)
   // // تحديد العنوان والمسار لصفحة عرض المقال
   // const articlePageURL = `../articles/showPost.php?article=${encodeURIComponent(articleJSON)}`;
-  localStorage.setItem('articleData', JSON.stringify(article));
+  localStorage.setItem("articleData", JSON.stringify(article));
   // التوجيه إلى صفحة عرض المقال
-  window.location.href =   "../articles/showPost.php" 
-
+  window.location.href = "../articles/showPost.php";
 }
 
 function editArticle(article) {
   console.log(article);
-  localStorage.setItem('articleData', JSON.stringify(article));
-  window.location.href =   "../articles/editArticle.php" ;
-
+  localStorage.setItem("articleData", JSON.stringify(article));
+  window.location.href = "../articles/editArticle.php";
 }
 
- function editPost(event,articleId,userArticleId) {
-   event.preventDefault();
+function editPost(event, articleId, userArticleId) {
+  event.preventDefault();
 
   const featuredImage = document.getElementById("featuredImage").files[0];
 
-  if (featuredImage && !(['image/png', 'image/jpeg', 'image/jpg'].includes(featuredImage.type))) {
-    document.getElementById("imgErrors").textContent = "الملف غير مدعوم. يجب أن يكون نوع الملف صورة (png, jpg, jpeg).";
-    document.getElementById("featuredImage").value = ""
+  if (
+    featuredImage &&
+    !["image/png", "image/jpeg", "image/jpg"].includes(featuredImage.type)
+  ) {
+    document.getElementById("imgErrors").textContent =
+      "الملف غير مدعوم. يجب أن يكون نوع الملف صورة (png, jpg, jpeg).";
+    document.getElementById("featuredImage").value = "";
     return;
   }
 
@@ -392,213 +409,338 @@ function editArticle(article) {
     formData.append("articleId", articleId);
     formData.append("featuredImage", featuredImage);
 
-      const response =  axios.post("http://localhost/zaker/articles/handlingEditArticle.php", formData);
-      document.getElementById("titleErrors").textContent = "";
-      document.getElementById("contentErrors").textContent = "";
-      document.getElementById("excerptErrors").textContent = "";
-      document.getElementById("categoryErrors").textContent = "";
-      document.getElementById("publishDateErrors").textContent = "";
-      document.getElementById("keywordsErrors").textContent = "";
-      document.getElementById("imgErrors").textContent = "";
-      if (response.data.title) {
-        document.getElementById("titleErrors").textContent = response.data.title;
-      }
-      if (response.data.content) {
-        document.getElementById("contentErrors").textContent = response.data.content;
-      }
-      if (response.data.excerpt) {
-        document.getElementById("excerptErrors").textContent = response.data.excerpt;
-      }
-      if (response.data.category) {
-        document.getElementById("categoryErrors").textContent = response.data.category;
-      }
-      if (response.data.publishDate) {
-        document.getElementById("publishDateErrors").textContent = response.data.publishDate;
-      }
-      if (response.data.keywords) {
-        document.getElementById("keywordsErrors").textContent = response.data.keywords;
-      }
-      if (response.data.featuredImage) {
-        document.getElementById("imgErrors").textContent = response.data.featuredImage;
-      }
-      if (response.data.insertArticle) {
-        alert(response.data.insertArticle);
-      }
-      
-  
+    const response = axios.post(
+      "http://localhost/zaker/articles/handlingEditArticle.php",
+      formData
+    );
+    document.getElementById("titleErrors").textContent = "";
+    document.getElementById("contentErrors").textContent = "";
+    document.getElementById("excerptErrors").textContent = "";
+    document.getElementById("categoryErrors").textContent = "";
+    document.getElementById("publishDateErrors").textContent = "";
+    document.getElementById("keywordsErrors").textContent = "";
+    document.getElementById("imgErrors").textContent = "";
+    if (response.data.title) {
+      document.getElementById("titleErrors").textContent = response.data.title;
+    }
+    if (response.data.content) {
+      document.getElementById("contentErrors").textContent =
+        response.data.content;
+    }
+    if (response.data.excerpt) {
+      document.getElementById("excerptErrors").textContent =
+        response.data.excerpt;
+    }
+    if (response.data.category) {
+      document.getElementById("categoryErrors").textContent =
+        response.data.category;
+    }
+    if (response.data.publishDate) {
+      document.getElementById("publishDateErrors").textContent =
+        response.data.publishDate;
+    }
+    if (response.data.keywords) {
+      document.getElementById("keywordsErrors").textContent =
+        response.data.keywords;
+    }
+    if (response.data.featuredImage) {
+      document.getElementById("imgErrors").textContent =
+        response.data.featuredImage;
+    }
+    if (response.data.insertArticle) {
+      alert(response.data.insertArticle);
+    }
   } catch (error) {
     // التعامل مع الأخطاء في الطلب
     console.error("حدث خطأ أثناء إرسال المقالة:", error);
   }
 }
 
-
-
 function deleteArticle(articleId) {
   // اكتب الكود الخاص بحذف المقال هنا باستخدام articleId كمعرّف للمقال
-  console.log(articleId)
+  console.log(articleId);
   const data = { ArticleId: articleId };
   // console.log(data)
-  sendData("http://localhost/zaker/articles/deletePost.php", data)
-  .then((response) => {
-    if (response.message) {
-      alert(response.message);
-      window.location.href =   "../articles/showArticles.php" 
-
+  sendData("http://localhost/zaker/articles/deletePost.php", data).then(
+    (response) => {
+      if (response.message) {
+        alert(response.message);
+        window.location.href = "../articles/showArticles.php";
+      }
     }
-  });
+  );
 }
-
-
 
 async function addPrayers(event) {
   event.preventDefault();
 
-
- try {
+  try {
     let x = await getUsersDataNumber(); // انتظار حل الوعد
-   // الحصول على التاريخ الحالي بالتقويم الهجري
+    // الحصول على التاريخ الحالي بالتقويم الهجري
     var currentDate = new Date();
     var year = currentDate.getFullYear();
     var month = currentDate.getMonth() + 1;
     var day = currentDate.getDate();
-    var formattedDate = day+ "-" + month + "-" + year ;
+    var formattedDate = day + "-" + month + "-" + year;
     var apiUrl = "http://api.aladhan.com/v1/gToH/" + formattedDate;
-    
+
     const response1 = await fetch(apiUrl);
     const data = await response1.json();
-    var hijriDate = data.data.hijri.date +"-"+ data.data.hijri.month.ar;
+    var hijriDate = data.data.hijri.date + "-" + data.data.hijri.month.ar;
 
     const formData = new FormData(document.getElementById("MyParyersNumber"));
-    formData.append("userId", x['UserId']);
+    formData.append("userId", x["UserId"]);
     formData.append("hijriDate", hijriDate);
-    
+
     const dataForm = {};
     formData.forEach((value, key) => {
       dataForm[key] = value;
     });
-    console.log(dataForm.prayerCount)
+    console.log(dataForm.prayerCount);
 
-     const response = await axios.post("http://localhost/zaker/prayersHandling/prayersCountHandling.php", formData);
-     document.getElementById("prayerCountError").textContent = "";
-    
-     if (response.data.prayerCount) {
-       document.getElementById("prayerCountError").textContent = response.data.prayerCount;
-     }
-    
-if (response.data.insertArticle =="تم إضافة عدد صلواتك بنجاح") {
-  var table = $('#datatablesSimple').DataTable();
-  var currentRow = table.row(table.data().length - 1).data();
+    const response = await axios.post(
+      "http://localhost/zaker/prayersHandling/prayersCountHandling.php",
+      formData
+    );
+    document.getElementById("prayerCountError").textContent = "";
 
-  if (currentRow) {
-    var previousNumberPrayers = parseInt(currentRow.NumberPrayers);
-    var newNumberPrayers = parseInt (previousNumberPrayers) + parseInt(dataForm.prayerCount);
+    if (response.data.prayerCount) {
+      document.getElementById("prayerCountError").textContent =
+        response.data.prayerCount;
+    }
 
-    currentRow.NumberPrayers = newNumberPrayers;
-    table.row(table.data().length - 1).data(currentRow).draw();
-    alert("تم إضافة عدد صلواتك بنجاح")
-  } else if (response.data.insertArticle =="تم إدخال عدد صلواتك بنجاح"){
-    table.row.add({
-      "ترتيب": table.data().length + 1,
-      "NumberPrayers": dataForm.prayerCount,
-      "Date": dataForm.hijriDate
-    }).draw();
-    alert("تم إدخال عدد صلواتك بنجاح")
+    if (response.data.insertArticle == "تم إضافة عدد صلواتك بنجاح") {
+      var table = $("#datatablesSimple").DataTable();
+      var currentRow = table.row(table.data().length - 1).data();
+
+      if (currentRow) {
+        var previousNumberPrayers = parseInt(currentRow.NumberPrayers);
+        var newNumberPrayers =
+          parseInt(previousNumberPrayers) + parseInt(dataForm.prayerCount);
+
+        currentRow.NumberPrayers = newNumberPrayers;
+        table
+          .row(table.data().length - 1)
+          .data(currentRow)
+          .draw();
+        alert("تم إضافة عدد صلواتك بنجاح");
+      }
+    } else if (response.data.insertArticle == "تم إدخال عدد صلواتك بنجاح") {
+      var table = $("#datatablesSimple").DataTable();
+      var currentRow = table.row(table.data().length - 1).data();
+      table.row
+        .add({
+          ترتيب: table.data().length + 1,
+          NumberPrayers: dataForm.prayerCount,
+          Date: dataForm.hijriDate,
+        })
+        .draw();
+      alert("تم إدخال عدد صلواتك بنجاح");
+    } else {
+      alert("لم يتم الإضافة");
+    }
+  } catch (error) {
+    // التعامل مع الأخطاء في الطلب
+    console.error("حدث خطأ أثناء إرسال الطلب:", error);
   }
-} else {
-  alert("لم يتم الإضافة");
 }
 
- } catch (error) {
-   // التعامل مع الأخطاء في الطلب
-   console.error("حدث خطأ أثناء إرسال الطلب:", error);
- }
-}
-
-
+let totalPrayers = 0;
 
 async function addPrayersIndex(event) {
   event.preventDefault();
 
-
- try {
+  try {
     let x = await getUsersDataNumber(); // انتظار حل الوعد
-   if(x == false){
-    return
-   }
-   // الحصول على التاريخ الحالي بالتقويم الهجري
+    if (x == false) {
+      return;
+    }
+    // الحصول على التاريخ الحالي بالتقويم الهجري
     var currentDate = new Date();
     var year = currentDate.getFullYear();
     var month = currentDate.getMonth() + 1;
     var day = currentDate.getDate();
-    var formattedDate = day+ "-" + month + "-" + year ;
-    var apiUrl = "http://api.aladhan.com/v1/gToH/" + formattedDate;
-    
+    var formattedDate = day + "-" + month + "-" + year;
+    var apiUrl = "https://api.aladhan.com/v1/gToH/" + formattedDate;
+
     const response1 = await fetch(apiUrl);
     const data = await response1.json();
-    var hijriDate = data.data.hijri.date +"-"+ data.data.hijri.month.ar;
+    var hijriDate = data.data.hijri.date + "-" + data.data.hijri.month.ar;
 
     const formData = new FormData(document.getElementById("MyParyersNumber"));
-    formData.append("userId", x['UserId']);
+    formData.append("userId", x["UserId"]);
     formData.append("hijriDate", hijriDate);
+
+    // const dataForm = {};
+    // formData.forEach((value, key) => {
+    //   dataForm[key] = value;
+    // });
+    // console.log(dataForm.prayerCount);
+
+    const response = await axios.post(
+      "http://localhost/zaker/prayersHandling/prayersCountHandling.php",
+      formData
+    );
+    document.getElementById("prayerCountError").textContent = "";
+// console.log(totalPrayers);
+    if (response.data.prayerCount) {
+      document.getElementById("prayerCountError").textContent =
+        response.data.prayerCount;
+        document.getElementById("prayerCount").value=""  
+      
+    }
+    if (response.data.insertArticle == "تم إضافة عدد صلواتك بنجاح") {
+      // let previousPrayersElement = document.getElementById("AllPrayers");
+      let previousPrayersUser = document.getElementById("usersPrayers");
+      if (previousPrayersUser) {
+        let prayer = document.getElementById("prayerCount").value;
+        let previousPrayers = parseInt(totalPrayers);
+        totalPrayers = previousPrayers + parseInt(prayer);
+        document.getElementById("AllPrayers").textContent = totalPrayers;
+
+        previousPrayersUser.textContent = parseInt(previousPrayersUser.textContent)+ parseInt(prayer) + "صلواتك على رسول الله";
+
+
+          alert(" تم إضافة عدد صلواتك بنجاح");
+          document.getElementById("prayerCount").value=""  
+      } else {
+        let prayer = document.getElementById("prayerCount").value;
+        let previousPrayers = parseInt(totalPrayers);
+        totalPrayers = previousPrayers + parseInt(prayer);
+        document.getElementById("AllPrayers").textContent = totalPrayers;
+
+        alert(" تم إضافة عدد صلواتك بنجاح");
+        document.getElementById("prayerCount").value=""  
+      }
+    }
     
-    const dataForm = {};
-    formData.forEach((value, key) => {
-      dataForm[key] = value;
-    });
-    console.log(dataForm.prayerCount)
+    else 
+      if (response.data.insertArticle == "تم إدخال عدد صلواتك بنجاح") {
+        let previousPrayersUser = document.getElementById("usersPrayers");
+      if (previousPrayersUser) {
+        let prayer = document.getElementById("prayerCount").value;
+        let previousPrayers = parseInt(totalPrayers);
+        totalPrayers = previousPrayers + parseInt(prayer);
+        document.getElementById("AllPrayers").textContent = totalPrayers;
 
-     const response = await axios.post("http://localhost/zaker/prayersHandling/prayersCountHandling.php", formData);
-     document.getElementById("prayerCountError").textContent = "";
-    
-     if (response.data.prayerCount) {
-       document.getElementById("prayerCountError").textContent = response.data.prayerCount;
-     }
-    
-if (response.data.insertArticle =="تم إضافة عدد صلواتك بنجاح") {
- 
-  let prayer = document.getElementById("prayerCount").value;
-  let previousPrayers = parseInt(document.getElementById("AllPrayers").innerHTML);
-  let totalPrayers = previousPrayers + parseInt(prayer);
-  document.getElementById("AllPrayers").innerHTML = totalPrayers + " صلاة";
-  alert(" تم إضافة عدد صلواتك بنجاح")
+        previousPrayersUser.textContent = parseInt(previousPrayersUser.textContent)+ parseInt(prayer) + "صلواتك على رسول الله";
 
-  
-}else if(response.data.insertArticle =="تم إدخال عدد صلواتك بنجاح"){
-  let prayer = document.getElementById("prayerCount").value;
-  let previousPrayers = parseInt(document.getElementById("AllPrayers").innerHTML);
-  let totalPrayers = previousPrayers + parseInt(prayer);
-  document.getElementById("AllPrayers").innerHTML = totalPrayers + " صلاة";  
-  alert(" تم إدخال عدد صلواتك بنجاح")
 
-}
-else {
-  alert("لم يتم الإضافة");
-}
+          alert(" تم إدخال عدد صلواتك بنجاح");
+          document.getElementById("prayerCount").value=""  
+      } else {
+        let prayer = document.getElementById("prayerCount").value;
+        let previousPrayers = parseInt(totalPrayers);
+        totalPrayers = previousPrayers + parseInt(prayer);
+        document.getElementById("AllPrayers").textContent = totalPrayers;
+        alert(" تم إدخال عدد صلواتك بنجاح");
+        document.getElementById("prayerCount").value=""  
+      }
+    } else {
+      alert("لم يتم الإضافة");
+      document.getElementById("prayerCount").value=""  
 
- } catch (error) {
-   // التعامل مع الأخطاء في الطلب
-   console.error("حدث خطأ أثناء إرسال الطلب:", error);
- }
+    }
+  } catch (error) {
+    // التعامل مع الأخطاء في الطلب
+    console.error("حدث خطأ أثناء إرسال الطلب:", error);
+  }
 }
 
 
+
+
+// async function getPrayersAll() {
+//   try {
+    // const response = await axios.get(
+    //   "http://localhost/zaker/prayersHandling/getPrayersAll.php"
+    // );
+//     console.log(response.data[0]["TotalPrayers"]);
+
+//     document.getElementById("AllPrayers").innerHTML =
+//       response.data[0]["TotalPrayers"] + "صلاة";
+
+//     // return  JSON.stringify(response.data);
+//   } catch (error) {
+//     console.error("حدث خطأ أثناء إرسال الطلب:", error);
+//   }
+// }
 async function getPrayersAll() {
   try {
-  
-    const response = await axios.get("http://localhost/zaker/prayersHandling/getPrayersAll.php");
-    console.log(response.data[0]["TotalPrayers"])
-
-    document.getElementById("AllPrayers").innerHTML = response.data[0]["TotalPrayers"] + "صلاة"
+    const response = await axios.get(
+      "http://localhost/zaker/prayersHandling/getPrayersAll.php"
+    );
+    totalPrayers = response.data[0]["TotalPrayers"];
+    
+    
    
-    
-    
+    // Update the element with the prayers count
+    document.getElementById("AllPrayers").textContent = totalPrayers;
 
-    // return  JSON.stringify(response.data);
+    // Initialize the odometer
+    const odometerElement = document.getElementById("AllPrayers");
+    const odometerOptions = {
+      format: "d",
+      duration: 3500, // Animation duration in milliseconds
+    };
+    const odometer = new Odometer(odometerElement, odometerOptions);
+    odometer.render();
+
+    // Animate the odometer to the target value
+    document.querySelector(".odometer-inside").style.direction = "ltr";
+    odometer.update(totalPrayers);
 
   } catch (error) {
     console.error("حدث خطأ أثناء إرسال الطلب:", error);
   }
 }
 
-       
+// Call the function to retrieve and animate the prayers count
+// getPrayersAll();
+
+
+async function getPrayersUsers() {
+  try {
+
+    let x = await getUsersDataNumber(); // انتظار حل الوعد
+    if (x == false) {
+      return;
+    }
+    const formData = new FormData();
+    formData.append("userId", x["UserId"]);
+    // const data = {
+    //   userId: x["UserId"]
+    // };
+    const response = await axios.post(
+      "http://localhost/zaker/prayersHandling/getPrayersUsers.php", formData
+    );
+    console.log(response);
+    // console.log(response.data[0]["TotalPrayers"]);
+    if (response.data[0]["TotalPrayers"]) {
+    document.getElementById("usersPrayers").textContent =   response.data[0]["TotalPrayers"] + " صلواتك على رسول الله : ";
+    }
+
+    // return  JSON.stringify(response.data);
+  } catch (error) {
+    console.error("حدث خطأ أثناء إرسال الطلب:", error);
+  }
+}
+
+
+
+function getTotalUsers() {
+  fetch("http://localhost/zaker/auth/getAllUserTotal.php")
+    .then((response) => response.json())
+    .then((data) => {
+      document.getElementById("totalUser").textContent = data.totalSubscribers + ": عدد المشاركين ";     
+    });
+}
+
+
+function getTotalArticles() {
+  fetch("http://localhost/zaker/articles/getAllArticleTotal.php")
+    .then((response) => response.json())
+    .then((data) => {
+      document.getElementById("totalArticle").textContent = data.totalArticles + ": عدد المقالات ";     
+    });
+}

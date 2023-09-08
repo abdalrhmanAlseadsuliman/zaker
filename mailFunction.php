@@ -12,15 +12,25 @@ function sendmail($email, $subject , $message){
     // echo $mail,$message;
     try {
         // $mail->SMTPDebug  = SMTP::DEBUG_SERVER; 
-        $mail->isSMTP();
-        $mail->Host       = 'smtp.gmail.com';
-        $mail->SMTPAuth   = true;            
-        $mail->Username   = 'aboodsuliman1999@gmail.com';
-        $mail->Password   = 'wsftqjudjkyzrlvv';                    
-        $mail->SMTPSecure = 'ssl';   
-        $mail->Port       = 465;                           
+        
+        // $mail->isSMTP();
+        // $mail->Host       = 'smtp.gmail.com';
+        // $mail->SMTPAuth   = true;            
+        // $mail->Username   = 'aboodsuliman1999@gmail.com';
+        // $mail->Password   = 'wsftqjudjkyzrlvv';                    
+        // $mail->SMTPSecure = 'ssl';   
+        // $mail->Port       = 465;                           
 
-        $mail->setFrom('aboodsuliman1999@gmail.com', 'موقع ذاكر');
+        $mail->isSMTP(); 
+        // 'smtp.hostinger.com'
+        $mail->Host = 'smtp.titan.email';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'info@zaker.click'; 
+        $mail->Password   = 'zaker3@12345';                    
+        $mail->SMTPSecure = 'ssl';   
+        $mail->Port = 465; 
+
+        $mail->setFrom('info@zaker.click', 'zaker');
         $mail->addAddress($email);
 
         $mail->isHTML(true);

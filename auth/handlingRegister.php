@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if(insert_user($connection ,$postData, $hashedPassword ,$vCode)){
                     $errors["Connection"] = "تم التسجيل بنجاح يرجى مراجعة بريدك الالكتروني";            
                 }else {
-                    $errors["Connection"] = "تمo'h  التسجيل بنجاح لكن لم نستطع تفعيل الحساب";            
+                    $errors["Connection"] = "تم التسجيل بنجاح لكن لم نستطع تفعيل الحساب";            
 
                 }
             }

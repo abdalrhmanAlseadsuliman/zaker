@@ -1,3 +1,15 @@
+<?php
+session_start();
+if (isset($_SESSION['typeUsers']) && !empty($_SESSION['typeUsers']) && $_SESSION['typeUsers'] === 'user') {
+    header("Location:index.php");
+} elseif (
+    !isset($_SESSION['typeUsers']) || empty($_SESSION['typeUsers']) || $_SESSION['typeUsers'] !== 'admin'
+    || !isset($_SESSION['Email']) || empty($_SESSION['Email'])
+) {
+    header("Location: auth/logout.php");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -6,14 +18,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Charts - SB Admin</title>
+        <title> رسوم بيانية </title>
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="adminDashboard.php">Start Bootstrap</a>
+            <a class="navbar-brand ps-3" href="adminDashboard.php"> ذاكر </a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -37,53 +49,13 @@
             </ul>
         </nav>
         <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                    <div class="sb-sidenav-menu">
-                    <div class="nav">
-                        <div class="sb-sidenav-menu-heading">رئيسية</div>
-                        <a class="nav-link" href="adminDashboard.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            لوحة التحكم
-                        </a>
-                        <div class="sb-sidenav-menu-heading">عمليات</div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseArticles" aria-expanded="false" aria-controls="collapseArticles">
-                            <div class="sb-nav-link-icon"><i class="fas fa-newspaper"></i></div>
-                           إدارة المقالات
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapseArticles" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link" href="articles/addArticle.php">إضافة مقالة</a>
-                                <a class="nav-link" href="articles/showArticles.php">عرض المقالات</a>
-                            </nav>
-                        </div>
-                      
-                        <div class="sb-sidenav-menu-heading">إحصائيات</div>
-                        <a class="nav-link" href="charts.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                            رسوم بيانية
-                        </a>
-                        <a class="nav-link" href="tables.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            جداول
-                        </a>
-
-                       
-                    </div>
-                    </div>
-                    <div class="sb-sidenav-footer">
-                        <!-- <div class="small">Logged in as:</div> -->
-                        ذاكر
-                    </div>
-                </nav>
-            </div>
+        <?php include "sideBarAdmin.php"; ?>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">رسوم بيانية</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="adminDashboard.php">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="adminDashboard.php">لوحة التحكم</a></li>
                             <li class="breadcrumb-item active">رسوم بيانية</li>
                         </ol>
                         
@@ -142,18 +114,7 @@
                         </div>
                     </div>
                 </main>
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; فريق خادم</div>
-                            <div>
-                                <a href="#">نبذة عن فريق خادم</a>
-                                <!-- &middot; -->
-                                <!-- <a href="#">Terms &amp; Conditions</a> -->
-                            </div>
-                        </div>
-                    </div>
-                </footer>
+                <?php  include "footerAll.php"; ?>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

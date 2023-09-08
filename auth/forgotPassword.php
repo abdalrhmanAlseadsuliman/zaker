@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (send_forgotPassword_email($email, $vCode)) {
                     $response["message"] = " لقد تم ارسال بريد إلكتروني يحوي رابط إعادة تعين كلمة المرور";
                 } else {
-                    $response["message"] = " حدث خطا اثناء الارسال يرجى التاكد من البيانات المدخلة وإعاودة المحاولة ";
+                    $response["message"] = " حدث خطا اثناء الارسال التاكد من البيانات المدخلة وإعاودة المحاولة ";
                 }
             } else {
                 $response["message"] = " البريد الإلكتروني المدخل غير مسجل لدينا ";

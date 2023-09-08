@@ -289,24 +289,13 @@ if (isset($_SESSION['typeUsers']) && !empty($_SESSION['typeUsers']) && $_SESSION
                     </div>
                 </div>
             </main>
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; فريق ذاكر</div>
-                        <div>
-                            <a href="#">اهداف الحملة</a>
-                            &middot;
-                            <a href="#">نبذة عن فريق ذاكر</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            <?php  include "footerAll.php"; ?>
         </div>
     </div>
     <script src="js/filejs.js"></script>
-    <script src="js/chartLib.js"></script>
+    <!-- <script src="js/chartLib.js"></script>
     <script src="assets/demo/chart-area-demo.js"></script>
-    <script src="assets/demo/chart-bar-demo.js"></script>
+    <script src="assets/demo/chart-bar-demo.js"></script> -->
 
     <script src="js/axios.js"></script>
     <script src="js/bootstrap5.js"></script>

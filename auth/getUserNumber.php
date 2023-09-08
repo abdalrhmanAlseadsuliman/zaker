@@ -18,6 +18,6 @@ if (
         echo json_encode(['userError' => null]);
     }
 } else {
-    echo json_encode(['userError' => "يرجى تسجيل الدخول"]);
+    echo json_encode(['userError' => " يرجى تسجيل الدخول أولاً "]);
 }
 ?>

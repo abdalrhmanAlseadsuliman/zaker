@@ -1,6 +1,6 @@
 <?php
-include "../db/dbConn.php";
 session_start();
+include "../db/dbConn.php";
 if  ( 
         isset($_SESSION['Email']) && isset($_SESSION['typeUsers']) &&
         !empty($_SESSION['Email']) && !empty($_SESSION['typeUsers']) &&

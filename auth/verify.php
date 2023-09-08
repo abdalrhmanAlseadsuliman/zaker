@@ -1,6 +1,6 @@
 <?php
-include "../db/dbConn.php";
 session_start();
+include "../db/dbConn.php";
 
 function generateRandomCode($length) {
     
@@ -48,7 +48,7 @@ if (isset($_POST['email']) && isset($_POST['vCode'])) {
                     $_SESSION['typeUsers'] = $status;
                     // $_SESSION['userId'] = $user['UserId'];
 
-                    $response["success"] = "تم التحقق بنجاح يمكن إدخال الصوات الان";
+                    $response["success"] = "تم التحقق بنجاح يمكنك إدخال الصلوات الآن";
                    
                 } 
                 else {

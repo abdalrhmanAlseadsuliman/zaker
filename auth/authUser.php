@@ -38,6 +38,11 @@ function redirectToUserDashboard() {
     exit;
 }
 
+function redirectToUserIndex() {
+    header("Location: ../index.php");
+    exit;
+}
+
 function redirectToAdminDashboard() {
     header("Location: ../adminDashboard.php");
     exit;
