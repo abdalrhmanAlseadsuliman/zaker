@@ -1,5 +1,6 @@
 <?php
 include "functionRegisteration.php" ;
+
 function callFunction($data,  &$errors,$connection){
     
     $isValid = true;
@@ -59,18 +60,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // var_dump($postData);
             $postData["Age"] =  (int)$postData["Age"];
             // var_dump($postData);
-
-            if (send_verification_email($postData["Email"],$vCode)) {
+            
+            // إلفاء التحقق من الايميل
+            // if (send_verification_email($postData["Email"],$vCode)) {
                 if(insert_user($connection ,$postData, $hashedPassword ,$vCode)){
-                    $errors["Connection"] = "تم التسجيل بنجاح يرجى مراجعة بريدك الالكتروني";            
+                     
+                    setcookie('Email', $postData['Email'], time() + (86400 * 30), '/');
+                    setcookie('typeUsers','user', time() + (86400 * 30), '/');
+                    $_SESSION['Email'] = $postData['Email'];
+                    $_SESSION['typeUsers'] = 'user';
+                    $errors["Connection"] = "تم التسجيل بنجاح";  
+
                 }else {
-                    $errors["Connection"] = "تم التسجيل بنجاح لكن لم نستطع تفعيل الحساب";            
+                    $errors["Connection"] = "خطأ أثناء التسجيل";            
 
                 }
-            }
-            else {
-                $errors["Connection"] = "عنوان البريد الإلكتروني خاطئ يرجى التاكد منه وإعادة المحاولة";
-            }
+                // إلفاء التحقق من الايميل
+            // }
+            // else {
+            //     $errors["Connection"] = "عنوان البريد الإلكتروني خاطئ يرجى التاكد منه وإعادة المحاولة";
+            // }
             
        }
 

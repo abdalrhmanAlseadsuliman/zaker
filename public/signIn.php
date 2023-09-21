@@ -34,7 +34,7 @@ if (setCookiesToSession()) {
   <meta name="keywords" content="" />
   <meta name="author" content="5adem" />
   <link href="./css/tailwind.css" rel="stylesheet">
-  <script src="../js/fontawesome.js"></script>
+  <link href="./css/fontaowsem.css" rel="stylesheet">
   <link href="../css/myStyle.css" rel="stylesheet">
 
 </head>
@@ -52,7 +52,7 @@ if (setCookiesToSession()) {
         </div>
         <div class="block lg:hidden pr-4">
           <button id="nav-toggle" class="flex items-center p-1 text-white hover:text-gray-900 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-            <svg class="fill-current h-6 w-6" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <svg class="fill-current h-6 w-6 " viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <title>Menu</title>
               <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
             </svg>
@@ -67,7 +67,7 @@ if (setCookiesToSession()) {
               <a class="inline-block text-white hover:text-gray-300 text-black no-underline  hover:underline py-2 px-4" href="../index.php#salat">عدد الصلوات</a>
             </li>
             <li class="mr-3">
-              <a class="inline-block text-white hover:text-gray-300 text-black no-underline hover:underline py-2 px-4" href="signUp.php">التسجيل</a>
+              <a class="inline-block text-white hover:text-gray-300 text-black no-underline hover:underline py-2 px-4" href="signUp.php"> إنشاء حساب </a>
             </li>
           </ul>
           <button id="navAction" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">

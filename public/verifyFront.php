@@ -12,7 +12,8 @@
   <link href="./css/tailwind.css" rel="stylesheet">
   <link rel="stylesheet" href="../css/odometer.css" />
   <!--Replace with your tailwind.css once created-->
-  <script src="../js/fontawesome.js"></script>
+  <link href="./css/fontaowsem.css" rel="stylesheet">
+
   <link href="../css/myStyle.css" rel="stylesheet">
  
 </head>

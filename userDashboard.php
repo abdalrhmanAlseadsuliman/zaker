@@ -24,7 +24,7 @@ if (isset($_SESSION['typeUsers']) && !empty($_SESSION['typeUsers']) && $_SESSION
     <link rel="stylesheet" href="css/datatable.1.13.6.css">
 
     <link href="css/styles.css" rel="stylesheet" />
-    <script src="js/fontawesome.js"></script>
+    <!-- <script src="js/fontawesome.js"></script> -->
    
 </head>
 
@@ -253,6 +253,8 @@ if (isset($_SESSION['typeUsers']) && !empty($_SESSION['typeUsers']) && $_SESSION
    
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/datatables1.13.6.js"></script>
+    <script src="js/FontAwesome.js"></script>
+
     <script>
        
 

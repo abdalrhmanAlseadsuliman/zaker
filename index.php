@@ -1,6 +1,6 @@
 <?php
 include "./auth/authUser.php";
-
+setCookiesToSession();
 ?>
 
 <!DOCTYPE html>
@@ -14,11 +14,10 @@ include "./auth/authUser.php";
   <meta name="description" content="zaker.click" />
   <meta name="keywords" content="" />
   <meta name="author" content="5adem" />
-
+  <link rel="icon" href="./img/logo.png" type="image/png">
   <link rel="stylesheet" href="./css/odometer.css" />
   <link href="./css/tailwind.css" rel="stylesheet">
   <link href="./css/myStyle.css" rel="stylesheet">
-  <script src="js/fontawesome.js"></script>
 </head>
 
 <body class="leading-normal tracking-normal text-white gradient" dir="rtl">
@@ -34,7 +33,7 @@ include "./auth/authUser.php";
         </div>
         <div class="block lg:hidden pr-4">
           <button id="nav-toggle" class="flex items-center p-1 text-white hover:text-gray-900 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-            <svg class="fill-current h-6 w-6" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <svg class="fill-current h-6 w-6 toggleColour" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <title>Menu</title>
               <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
             </svg>
@@ -43,16 +42,16 @@ include "./auth/authUser.php";
         <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-gray-600 lg:bg-transparent text-black p-4 lg:p-0 z-20" id="nav-content">
           <ul class="list-reset lg:flex justify-end flex-1 items-center">
             <li class="mr-3">
-              <a class="inline-block py-2 text-white hover:text-gray-300 hover:underline px-4 text-black font-bold no-underline" href="index.php">الرئيسية</a>
+              <a class="inline-block py-2 text-white hover:text-gray-300 hover:underline px-4 text-black font-bold no-underline toggleColour" href="index.php">الرئيسية</a>
             </li>
             <li class="mr-3">
-              <a class="inline-block text-white hover:text-gray-300 text-black no-underline hover:underline py-2 px-4" href="#salat">عدد الصلوات</a>
+              <a class="inline-block text-white hover:text-gray-300 text-black no-underline hover:underline py-2 px-4 toggleColour" href="#salat">عدد الصلوات</a>
             </li>
             <?php
             if (!isSession()) :
             ?>
               <li class="mr-3">
-                <a class="inline-block text-white hover:text-gray-300 text-black no-underline hover:underline py-2 px-4" href="./public/signUp.php">إنشاء حساب</a>
+                <a class="inline-block text-white hover:text-gray-300 text-black no-underline hover:underline py-2 px-4 toggleColour" href="./public/signUp.php">إنشاء حساب</a>
               </li>
           </ul>
           <button id="navAction" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
@@ -110,6 +109,7 @@ include "./auth/authUser.php";
             <input type="number" list="myList" class="block text-black flex-1 bg-white border border-gray-300 hover:border-gray-500 rounded px-4 py-2 leading-tight focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" placeholder="أدخل عدد صلواتك" id="prayerCount" name="prayerCount" />
             <datalist id="myList">
               <option value="100"></option>
+              <option value="300"></option>
               <option value="500"></option>
               <option value="1000"></option>
               <option value="2000"></option>
@@ -124,7 +124,7 @@ include "./auth/authUser.php";
             <button class="mx-auto lg:mx-0 w-1/2 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-2 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out" onClick="addPrayersIndex(event)">
               ارسل صلواتك
             </button>
-            <span id="prayerCountError" class="text-gray-800"></span>
+            <span id="prayerCountError" style="color:#fff"></span>
 
           <?php
           elseif (!isSession()) :
@@ -133,12 +133,12 @@ include "./auth/authUser.php";
               <span style="color:rgb(0,255,0)"> علماً ان التسجيل لمرة واحدة </span>
             </span>
             <div class="text-gray-800 mt-4">
-              <a href="#" class="mx-auto lg:mx-0 w-1/2 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-2 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out mt-2">
+              <a href="./public/signIn.php" class="mx-auto lg:mx-0 w-1/3 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-2 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out mt-2">
                 تسجيل الدخول
               </a>
 
-              <a href="#" class="mx-auto lg:mx-0 w-1/2 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-2 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out mt-2">
-                إنشاء حساب جديد
+              <a href="./public/signUp.php" class="mx-auto lg:mx-0 w-1/3 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-2 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out mt-2">
+                إنشاء حساب 
               </a>
             </div>
         </form>
@@ -354,16 +354,15 @@ include "./auth/authUser.php";
 
         <div class="flex justify-flex-center">
 
-
-          <a href="https://www.facebook.com/rabe3almoheben" style="font-size: 34px; color:#317e71; margin: 0 10px;">
+          <a href="https://www.facebook.com/rabe3almoheben" class="flex-1 md:w-12 text-gray-600" style="font-size: 34px; color:#317e71; margin: 0 20px;">
             <i class="fab fa-facebook" ></i>
           </a>
 
-          <a href="https://www.youtube.com/@AounalKaddoumi" style="font-size: 34px; color:#317e71 ;margin: 0 10px;">
+          <a href="https://www.youtube.com/@AounalKaddoumi" class="flex-1 md:w-12 text-gray-600" style="font-size: 34px; color:#317e71 ;margin: 0 20px;">
             <i class="fab fa-youtube"></i>
           </a>
 
-          <a href="https://t.me/ZakerClick" class="flex-1 md:w-12 text-gray-600" style="font-size: 34px; color:#317e71;margin: 0 10px;">
+          <a href="https://t.me/ZakerClick" class="flex-1 md:w-12 text-gray-600" style="font-size: 34px; color:#317e71;margin: 0 20px;">
             <i class="fab fa-telegram-plane"></i>
           </a>
 
@@ -399,8 +398,8 @@ include "./auth/authUser.php";
         header.classList.add("text-black");
         navaction.classList.remove("bg-white");
         navaction.classList.add("gradient");
-        navaction.classList.remove("text-gray-800");
-        navaction.classList.add("text-white");
+        navaction.classList.remove("text-white");
+        navaction.classList.add("text-gray-800");
         //Use to switch toggleColour colours
         for (var i = 0; i < toToggle.length; i++) {
           toToggle[i].classList.add("text-gray-800");
@@ -477,6 +476,7 @@ include "./auth/authUser.php";
 
 
   <script src="js/odometer.js"></script>
+  <script src="js/FontAwesome.js"></script>
   <script src="js/filejs.js"></script>
   <script src="js/axios.js"></script>
   <script>

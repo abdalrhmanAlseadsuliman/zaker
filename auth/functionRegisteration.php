@@ -1,8 +1,8 @@
 <?php
+session_start();
 include "../db/dbConn.php";
 include "../mailFunction.php";
 
-session_start();
 
 function isPasswordStrong($password, &$errors)
 {
@@ -59,7 +59,7 @@ function check_email_exists($connection, $email){
 }
 
 function insert_user($connection,$data, $password ,$v_cod){
-    $sql = "INSERT INTO users (FirstName, LastName, Email, Age, Gender,Nationality, Password, Status,VerificationId, VerificationStatus) VALUES ('$data[FirstName]', '$data[LastName]', '$data[Email]', $data[Age], '$data[Gender]', '$data[Nationality]','$password', 'user' ,'$v_cod', 0)";
+    $sql = "INSERT INTO users (FirstName, LastName, Email, Age, Gender,Nationality, Password, Status,VerificationId, VerificationStatus) VALUES ('$data[FirstName]', '$data[LastName]', '$data[Email]', $data[Age], '$data[Gender]', '$data[Nationality]','$password', 'user' ,'$v_cod', 1)";
     return mysqli_query($connection, $sql);
 }
 

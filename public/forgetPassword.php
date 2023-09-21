@@ -30,7 +30,7 @@ if (setCookiesToSession()) {
   <meta name="keywords" content="" />
   <meta name="author" content="5adem" />
   <link href="../css/tailwind.css" rel="stylesheet">
-  <script src="../js/fontawesome.js"></script>
+  <link href="./css/fontaowsem.css" rel="stylesheet">
   <link href="../css/myStyle.css" rel="stylesheet">
  
   </style>
